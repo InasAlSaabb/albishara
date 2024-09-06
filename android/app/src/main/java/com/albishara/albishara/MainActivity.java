@@ -1,4 +1,4 @@
-package com.ownertech.flutter_templete;
+package com.albishara.albishara;
 
 import io.flutter.embedding.android.FlutterActivity;
 

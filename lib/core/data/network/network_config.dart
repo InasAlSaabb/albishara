@@ -3,7 +3,8 @@ import 'package:flutter_templete/core/utils/general_utils.dart';
 
 //ملف الاعدادادتى لكامل ال api
 class NetworkConfig {
-  static String BASE_API = 'api/web/';
+  static String BASE_API = "/api/";
+//albishara.net/api/asfar/list/{trans}/
   static String getFullApiRoute(String apiroute) {
     return BASE_API + apiroute;
   }

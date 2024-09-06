@@ -15,8 +15,6 @@ class SplashSceenView extends StatefulWidget {
 
 class _SplashSceenViewState extends State<SplashSceenView> {
   SplashSceenController controller = Get.put(SplashSceenController());
-  //lazyput
-  //putasync
 
   @override
   Widget build(BuildContext context) {
@@ -26,28 +24,21 @@ class _SplashSceenViewState extends State<SplashSceenView> {
       alignment: Alignment.bottomCenter,
       fit: StackFit.passthrough,
       children: [
-        SvgPicture.asset(
-          'assets/images/bg_background.svg',
-          height: screenHieght(1),
-          width: screenWidth(1),
-        ),
         Center(
             child: SvgPicture.asset(
-          'assets/images/Logo.svg',
-          width: screenWidth(5),
-          height: screenHieght(5),
+          'assets/images/albishara2.svg',
+          width: screenWidth(3),
+          height: screenHieght(3),
         )),
         Container(
           margin: EdgeInsets.only(bottom: screenWidth(3)),
           // width: size.width*0.1,
           height: screenWidth(3),
           child: SpinKitThreeBounce(
-            color: AppColors.mainOrangeColor,
+            color: Colors.brown,
           ),
         ),
       ],
     )));
   }
 }
-
-// top:size.hiegh*0.7

@@ -6,7 +6,7 @@ import 'package:flutter_templete/core/enums/request_type.dart';
 import 'package:http/http.dart' as http;
 
 class NetworkUtil {
-  static String baseUrl = 'training.owner-tech.com';
+  static String baseUrl = 'albishara.net';
   static var client = http.Client();
   static Future<dynamic> sendRequest({
     required RequestType type,
