@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_templete/main.dart';
 import 'package:flutter_templete/ui/shared/colors.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
+import 'package:flutter_templete/ui/views/chnr_view/chnr_view.dart';
 import 'package:flutter_templete/ui/views/m_view/m_controller.dart';
 import 'package:get/get.dart';
 
@@ -74,12 +75,21 @@ class _MViewState extends State<MView> {
                                           width: 2,
                                           color: Colors.brown))),
                               child: Center(
-                                child: Text(
-                                  controllerr.asfarListtt[index].name!,
-                                  style: TextStyle(
-                                      fontSize: screenWidth(14),
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.mainOrangeColor),
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.to(ChnrView(
+                                      trans: widget.id,
+                                      hid: controllerr.asfarListtt[index].id,
+                                      ch: controllerr.asfarListtt[index].chrcnt,
+                                    ));
+                                  },
+                                  child: Text(
+                                    controllerr.asfarListtt[index].name!,
+                                    style: TextStyle(
+                                        fontSize: screenWidth(14),
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.mainOrangeColor),
+                                  ),
                                 ),
                               )),
                         );
