@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_templete/app/app_config.dart';
+import 'package:flutter_templete/core/data/models/apis/ayat_model.dart';
+import 'package:flutter_templete/core/data/models/apis/list_asfar_model.dart';
 import 'package:flutter_templete/core/data/models/apis/token_info.dart';
 import 'package:flutter_templete/core/data/models/cart_model.dart';
 import 'package:flutter_templete/core/enums/data_type.dart';
@@ -17,6 +19,117 @@ class SharedPrefrenceRepostory {
   String PREF_CART_LIST = 'cart_list';
   String PREF_SUB_STATUS = 'sub_status';
   //list
+  String PREF_ASFAR_MODEL = 'asfar_list_model';
+  String PREF_AYAT_MODEL = 'ayat_list_model';
+  String PREF_NUM = 'num';
+
+  // Future<void> setNum(List<String> list) async {
+  //   setPreference(
+  //     dataType: DataType.STRING,
+  //     key: PREF_NUM,
+  //     value: jsonEncode(list),
+  //   );
+  // }
+
+  // Future<List<String>> getNum() async {
+  //   if (globalSharedPreference.containsKey(PREF_NUM)) {
+  //     // Ensure getPreferenc returns a List<String>
+  //     List<String> storedList =
+  //         globalSharedPreference.getStringList(PREF_NUM) ?? [];
+  //     return storedList;
+  //   } else {
+  //     return [];
+  //   }
+  // }
+
+  Future<List<String>> getNum() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.containsKey(PREF_NUM)) {
+      // استرجاع القائمة المخزنة
+      return prefs.getStringList(PREF_NUM) ?? [];
+    } else {
+      return [];
+    }
+  }
+
+// دالة غير متزامنة لإضافة عنصر جديد إلى القائمة المخزنة
+  Future<void> setNum(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // استرجاع القائمة الحالية
+    List<String> currentList = await getNum();
+
+    // إضافة القيمة الجديدة إلى القائمة
+    currentList.add(value);
+
+    // إزالة التكرار من القائمة
+    List<String> uniqueList = currentList.toSet().toList();
+
+    // تخزين القائمة المحدثة
+    await prefs.setStringList(PREF_NUM, uniqueList);
+  }
+
+  // Future<void> saveAsfar(RxList<asfarListModel> models) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   List<String> jsonStringList =
+  //       models.map((model) => jsonEncode(model.toJson())).toList();
+  //   await prefs.setStringList(PREF_ASFAR_MODEL, jsonStringList);
+  // }
+
+  // Future<RxList<asfarListModel>> getAsfar() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   List<String>? jsonStringList = prefs.getStringList(PREF_ASFAR_MODEL);
+
+  //   RxList<asfarListModel> modelList = <asfarListModel>[].obs;
+
+  //   if (jsonStringList != null && jsonStringList.isNotEmpty) {
+  //     for (String jsonString in jsonStringList) {
+  //       try {
+  //         modelList.add(asfarListModel.fromJson(jsonDecode(jsonString)));
+  //       } catch (e) {
+  //         print('Error decoding JSON: $jsonString\nError: $e');
+  //       }
+  //     }
+  //   } else {
+  //     print('No cached models found or cached data is empty.');
+  //   }
+
+  //   return modelList;
+  // }
+
+  // Future<void> saveAyat(RxList<AyatModel> models) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   List<String> jsonStringList =
+  //       models.map((model) => jsonEncode(model.toJson())).toList();
+  //   await prefs.setStringList(PREF_AYAT_MODEL, jsonStringList);
+  // }
+
+  // Future<RxList<AyatModel>> getAyat() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   List<String>? jsonStringList = prefs.getStringList(PREF_AYAT_MODEL);
+
+  //   RxList<AyatModel> modelList = <AyatModel>[].obs;
+
+  //   if (jsonStringList != null && jsonStringList.isNotEmpty) {
+  //     for (String jsonString in jsonStringList) {
+  //       try {
+  //         modelList.add(AyatModel.fromJson(jsonDecode(jsonString)));
+  //       } catch (e) {
+  //         print('Error decoding JSON: $jsonString\nError: $e');
+  //       }
+  //     }
+  //   } else {
+  //     print('No cached models found or cached data is empty.');
+  //   }
+
+  //   return modelList;
+  // }
+
+  // Future<void> clearAyat() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.remove(PREF_AYAT_MODEL); // Use the correct key for Ayat data
+  // }
 
   void setTokenInfo(TokenInfo value) {
     setPreference(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_templete/core/utils/general_utils.dart';
 import 'package:flutter_templete/main.dart';
 import 'package:flutter_templete/ui/shared/colors.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
@@ -21,15 +22,30 @@ class _MViewState extends State<MView> {
   late Mcontroller controllerr;
   @override
   void initState() {
-    controllerr = Get.put(Mcontroller(
-      id: widget.id,
-    ));
+    controllerr =
+        Get.put(Mcontroller(id: widget.id, name: widget.name, tp: widget.tp));
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isInserted = false;
+
+    if (!isInserted) {
+      for (var item in controllerr.asfarListtt) {
+        controllerr.sql.insert(controllerr.id!, {
+          "id": item.id,
+          "chrcnt": item.chrcnt,
+          "kaComp": item.kaComp,
+          "name": item.name,
+          "basl": item.basl,
+          "tp": item.tp
+        });
+      }
+      isInserted = true;
+    }
+
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -63,6 +79,15 @@ class _MViewState extends State<MView> {
                       scrollDirection: Axis.vertical,
                       itemCount: controllerr.asfarListtt.length,
                       itemBuilder: (BuildContext context, int index) {
+                        controllerr.sql.insert(controllerr.id!, {
+                          "id": controllerr.asfarListtt[index].id,
+                          "chrcnt": controllerr.asfarListtt[index].chrcnt,
+                          "kaComp": controllerr.asfarListtt[index].kaComp,
+                          "name": controllerr.asfarListtt[index].name,
+                          "basl": controllerr.asfarListtt[index].basl,
+                          "tp": controllerr.asfarListtt[index].tp
+                        });
+                        storage.setNum(widget.id!);
                         return Visibility(
                           visible:
                               widget.tp == controllerr.asfarListtt[index].tp,
