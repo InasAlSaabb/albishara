@@ -47,68 +47,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                 onTap: () {
-                  Get.bottomSheet(
-                      backgroundColor: AppColors.mainBackColor,
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'اختر العهد ',
-                              style: TextStyle(
-                                  fontSize: screenWidth(12),
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.mainblack),
-                            ),
-                            SizedBox(
-                              height: screenHieght(30),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(MView(
-                                  name: "الترجمة المشتركة دار الكتاب المقدس",
-                                  id: "M",
-                                  tp: 1,
-                                ));
-                              },
-                              child: Container(
-                                  height: screenHieght(15),
-                                  width: screenWidth(2),
-                                  color: AppColors.mainOrangeColor,
-                                  child: Center(
-                                      child: Text(
-                                    "العهد القديم",
-                                    style: TextStyle(
-                                        fontSize: screenWidth(14),
-                                        fontWeight: FontWeight.bold),
-                                  ))),
-                            ),
-                            SizedBox(
-                              height: screenHieght(30),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(MView(
-                                  name: "الترجمة المشتركة دار الكتاب المقدس",
-                                  id: "M",
-                                  tp: 2,
-                                ));
-                              },
-                              child: Container(
-                                  height: screenHieght(15),
-                                  width: screenWidth(2),
-                                  color: AppColors.mainOrangeColor,
-                                  child: Center(
-                                      child: Text(
-                                    "العهد الجديد",
-                                    style: TextStyle(
-                                        fontSize: screenWidth(14),
-                                        fontWeight: FontWeight.bold),
-                                  ))),
-                            ),
-                          ],
-                        ),
+                  controller.showCustomBottomSheet(
+                    context,
+                    () {
+                      Get.to(MView(
+                        name: "الترجمة المشتركة دار الكتاب المقدس",
+                        id: "M",
+                        tp: 1,
                       ));
+                    },
+                    () {
+                      Get.to(MView(
+                        name: "الترجمة المشتركة دار الكتاب المقدس",
+                        id: "M",
+                        tp: 2,
+                      ));
+                    },
+                  );
                 },
                 child: CustomCont(
                   text: controller.bishara.m!,
@@ -119,68 +74,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                 onTap: () {
-                  Get.bottomSheet(
-                      backgroundColor: AppColors.mainBackColor,
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'اختر العهد ',
-                              style: TextStyle(
-                                  fontSize: screenWidth(12),
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.mainblack),
-                            ),
-                            SizedBox(
-                              height: screenHieght(30),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(MView(
-                                  name: "ترجمة فاندايك",
-                                  id: "V",
-                                  tp: 1,
-                                ));
-                              },
-                              child: Container(
-                                  height: screenHieght(15),
-                                  width: screenWidth(2),
-                                  color: AppColors.mainOrangeColor,
-                                  child: Center(
-                                      child: Text(
-                                    "العهد القديم",
-                                    style: TextStyle(
-                                        fontSize: screenWidth(14),
-                                        fontWeight: FontWeight.bold),
-                                  ))),
-                            ),
-                            SizedBox(
-                              height: screenHieght(30),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(MView(
-                                  name: "ترجمة فاندايك",
-                                  id: "V",
-                                  tp: 2,
-                                ));
-                              },
-                              child: Container(
-                                  height: screenHieght(15),
-                                  width: screenWidth(2),
-                                  color: AppColors.mainOrangeColor,
-                                  child: Center(
-                                      child: Text(
-                                    "العهد الجديد",
-                                    style: TextStyle(
-                                        fontSize: screenWidth(14),
-                                        fontWeight: FontWeight.bold),
-                                  ))),
-                            ),
-                          ],
-                        ),
+                  controller.showCustomBottomSheet(
+                    context,
+                    () {
+                      Get.to(MView(
+                        name: "ترجمة فاندايك",
+                        id: "V",
+                        tp: 1,
                       ));
+                    },
+                    () {
+                      Get.to(MView(
+                        name: "ترجمة فاندايك",
+                        id: "V",
+                        tp: 2,
+                      ));
+                    },
+                  );
                 },
                 child: CustomCont(
                   text: controller.bishara.v!,
@@ -191,68 +101,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "الترجمة الكاثوليكية",
-                                    id: "K",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "الترجمة الكاثوليكية",
-                                    id: "K",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "الترجمة الكاثوليكية",
+                          id: "K",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "الترجمة الكاثوليكية",
+                          id: "K",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.k!)),
               SizedBox(
@@ -260,68 +125,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "الترجمة البولسية",
-                                    id: "P",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "الترجمة البولسية",
-                                    id: "P",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "الترجمة البولسية",
+                          id: "P",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "الترجمة البولسية",
+                          id: "P",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.p!)),
               SizedBox(
@@ -329,68 +149,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "ترجمة كتاب الحياة",
-                                    id: "H",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "ترجمة كتاب الحياة",
-                                    id: "H",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "ترجمة كتاب الحياة",
+                          id: "H",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "ترجمة كتاب الحياة",
+                          id: "H",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.h!)),
               SizedBox(
@@ -398,68 +173,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص السرياني",
-                                    id: "SY",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص السرياني",
-                                    id: "SY",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "النص السرياني",
+                          id: "SY",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "النص السرياني",
+                          id: "SY",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.sY!)),
               SizedBox(
@@ -467,68 +197,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص اليوناني",
-                                    id: "GR",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص اليوناني",
-                                    id: "GR",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "النص اليوناني",
+                          id: "GR",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "النص اليوناني",
+                          id: "GR",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.gR!)),
               SizedBox(
@@ -536,68 +221,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص العبري",
-                                    id: "HE",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص العبري",
-                                    id: "HE",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "النص العبري",
+                          id: "HE",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "النص العبري",
+                          id: "HE",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.hE!)),
               SizedBox(
@@ -605,68 +245,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص الإنكليزي",
-                                    id: "EN",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص الإنكليزي",
-                                    id: "EN",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "النص الإنكليزي",
+                          id: "EN",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "النص الإنكليزي",
+                          id: "EN",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.eN!)),
               SizedBox(
@@ -674,68 +269,23 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                   onTap: () {
-                    Get.bottomSheet(
-                        backgroundColor: AppColors.mainBackColor,
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'اختر العهد ',
-                                style: TextStyle(
-                                    fontSize: screenWidth(12),
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainblack),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص الفرنسي",
-                                    id: "FR",
-                                    tp: 1,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد القديم",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                              SizedBox(
-                                height: screenHieght(30),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(MView(
-                                    name: "النص الفرنسي",
-                                    id: "FR",
-                                    tp: 2,
-                                  ));
-                                },
-                                child: Container(
-                                    height: screenHieght(15),
-                                    width: screenWidth(2),
-                                    color: AppColors.mainOrangeColor,
-                                    child: Center(
-                                        child: Text(
-                                      "العهد الجديد",
-                                      style: TextStyle(
-                                          fontSize: screenWidth(14),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
-                              ),
-                            ],
-                          ),
+                    controller.showCustomBottomSheet(
+                      context,
+                      () {
+                        Get.to(MView(
+                          name: "النص الفرنسي",
+                          id: "FR",
+                          tp: 1,
                         ));
+                      },
+                      () {
+                        Get.to(MView(
+                          name: "النص الفرنسي",
+                          id: "FR",
+                          tp: 2,
+                        ));
+                      },
+                    );
                   },
                   child: CustomCont(text: controller.bishara.fR!)),
             ],

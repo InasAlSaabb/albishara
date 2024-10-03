@@ -42,7 +42,7 @@ class Mcontroller extends BaseController {
 
     final connectivityResult = await (Connectivity().checkConnectivity());
 
-    if (connectivityResult == ConnectivityResult.none || ids.contains(id)) {
+    if (connectivityResult == ConnectivityResult.none && ids.contains(id)) {
       await getAsfarFromDatabase();
     } else {
       await getAsfarList(id: id!);
@@ -56,8 +56,13 @@ class Mcontroller extends BaseController {
           messageType: MessageType.REJECTED);
       return;
     }
-
-    var result = await sql.read(id!);
+    final result = await sql.readmod(
+      'asfar',
+      where: '"trans" = ?',
+      whereArgs: [id!],
+    );
+    // var result = await sql.read(id!);
+    // var result = await sql.read("asfar");
     if (result.isNotEmpty) {
       RxList<asfarListModel> res = RxList<asfarListModel>.from(
           result.map((item) => asfarListModel.fromJson(item)).toList());
@@ -86,11 +91,35 @@ class Mcontroller extends BaseController {
           value.fold((l) {
             CustomToast.showMessage(
                 message: l, messageType: MessageType.REJECTED);
-          }, (r) {
+          }, (r) async {
             CustomToast.showMessage(
                 message: "succed", messageType: MessageType.SUCCESS);
             asfarListtt.value = r;
+            await _checkAndInsertRecords();
           });
         }));
+  }
+
+  Future<void> _checkAndInsertRecords() async {
+    for (var item in asfarListtt) {
+      storage.setNum(id!);
+      List<Map<String, dynamic>> existingRecords = await sql.readData(
+        "SELECT * FROM asfar WHERE basl = ?",
+        [item.basl!],
+      );
+
+      if (existingRecords.isEmpty) {
+        // إذا لم يكن السجل موجودًا، قم بالإضافة
+        await sql.insert("asfar", {
+          "id": item.id,
+          "trans": id,
+          "chrcnt": item.chrcnt,
+          "kaComp": item.kaComp,
+          "name": item.name,
+          "basl": item.basl,
+          "tp": item.tp,
+        });
+      }
+    }
   }
 }

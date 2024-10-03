@@ -141,6 +141,7 @@ CREATE TABLE "FR"(
     batch.execute('''
 CREATE TABLE "asfar"(
 "id" INTEGER ,
+"trans" TEXT,
 "chrcnt" INTEGER ,
 "kaComp" INTEGER,
 "name" TEXT ,

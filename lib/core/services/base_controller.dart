@@ -1,8 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_templete/core/enums/operation_type.dart';
 import 'package:flutter_templete/core/enums/request_status.dart';
 import 'package:flutter_templete/core/utils/general_utils.dart';
+import 'package:flutter_templete/ui/shared/colors.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
+import 'package:flutter_templete/ui/views/m_view/m_view.dart';
 import 'package:get/get.dart';
 
 class BaseController extends GetxController {
@@ -65,5 +68,60 @@ class BaseController extends GetxController {
       BotToast.closeAllLoading();
     });
   }
+
+  void showCustomBottomSheet(BuildContext context,
+      VoidCallback onOldTestamentTap, VoidCallback onNewTestamentTap) {
+    Get.bottomSheet(
+        backgroundColor: AppColors.mainBackColor,
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'اختر العهد ',
+                style: TextStyle(
+                    fontSize: screenWidth(12),
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.mainblack),
+              ),
+              SizedBox(
+                height: screenHieght(30),
+              ),
+              InkWell(
+                onTap: onOldTestamentTap,
+                child: Container(
+                    height: screenHieght(15),
+                    width: screenWidth(2),
+                    color: AppColors.mainOrangeColor,
+                    child: Center(
+                        child: Text(
+                      "العهد القديم",
+                      style: TextStyle(
+                          fontSize: screenWidth(14),
+                          fontWeight: FontWeight.bold),
+                    ))),
+              ),
+              SizedBox(
+                height: screenHieght(30),
+              ),
+              InkWell(
+                onTap: onNewTestamentTap,
+                child: Container(
+                    height: screenHieght(15),
+                    width: screenWidth(2),
+                    color: AppColors.mainOrangeColor,
+                    child: Center(
+                        child: Text(
+                      "العهد الجديد",
+                      style: TextStyle(
+                          fontSize: screenWidth(14),
+                          fontWeight: FontWeight.bold),
+                    ))),
+              ),
+            ],
+          ),
+        ));
+  }
 }
+
 //2 fun

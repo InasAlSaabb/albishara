@@ -20,6 +20,14 @@ class MView extends StatefulWidget {
 
 class _MViewState extends State<MView> {
   late Mcontroller controllerr;
+  Future<bool> checkAndInsert(int id, Map<String, dynamic> data) async {
+    if (!await controllerr.sql.recordExists('asfar', id)) {
+      await controllerr.sql.insert('asfar', data);
+      return true;
+    }
+    return false;
+  }
+
   @override
   void initState() {
     controllerr =
@@ -30,22 +38,6 @@ class _MViewState extends State<MView> {
 
   @override
   Widget build(BuildContext context) {
-    bool isInserted = false;
-
-    if (!isInserted) {
-      for (var item in controllerr.asfarListtt) {
-        controllerr.sql.insert(controllerr.id!, {
-          "id": item.id,
-          "chrcnt": item.chrcnt,
-          "kaComp": item.kaComp,
-          "name": item.name,
-          "basl": item.basl,
-          "tp": item.tp
-        });
-      }
-      isInserted = true;
-    }
-
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -79,15 +71,29 @@ class _MViewState extends State<MView> {
                       scrollDirection: Axis.vertical,
                       itemCount: controllerr.asfarListtt.length,
                       itemBuilder: (BuildContext context, int index) {
-                        controllerr.sql.insert(controllerr.id!, {
-                          "id": controllerr.asfarListtt[index].id,
-                          "chrcnt": controllerr.asfarListtt[index].chrcnt,
-                          "kaComp": controllerr.asfarListtt[index].kaComp,
-                          "name": controllerr.asfarListtt[index].name,
-                          "basl": controllerr.asfarListtt[index].basl,
-                          "tp": controllerr.asfarListtt[index].tp
-                        });
-                        storage.setNum(widget.id!);
+                        // controllerr.sql.insert("asfar", {
+                        //   "id": controllerr.asfarListtt[index].id,
+                        //   "trans": controllerr.id,
+                        //   "chrcnt": controllerr.asfarListtt[index].chrcnt,
+                        //   "kaComp": controllerr.asfarListtt[index].kaComp,
+                        //   "name": controllerr.asfarListtt[index].name,
+                        //   "basl": controllerr.asfarListtt[index].basl,
+                        //   "tp": controllerr.asfarListtt[index].tp
+                        // });
+                        // final asfar = controllerr.asfarListtt[index];
+
+                        // تحقق من أن id غير null قبل استخدامه
+                        // checkAndInsert(asfar.id!, {
+                        //   "id": controllerr.asfarListtt[index].id,
+                        //   "trans": controllerr.id,
+                        //   "chrcnt": controllerr.asfarListtt[index].chrcnt,
+                        //   "kaComp": controllerr.asfarListtt[index].kaComp,
+                        //   "name": controllerr.asfarListtt[index].name,
+                        //   "basl": controllerr.asfarListtt[index].basl,
+                        //   "tp": controllerr.asfarListtt[index].tp
+                        // });
+                        storage.setNum(controllerr.id!);
+
                         return Visibility(
                           visible:
                               widget.tp == controllerr.asfarListtt[index].tp,
@@ -109,7 +115,7 @@ class _MViewState extends State<MView> {
                                     ));
                                   },
                                   child: Text(
-                                    controllerr.asfarListtt[index].name!,
+                                    controllerr.asfarListtt[index].name ?? "",
                                     style: TextStyle(
                                         fontSize: screenWidth(14),
                                         fontWeight: FontWeight.bold,
@@ -125,3 +131,11 @@ class _MViewState extends State<MView> {
     ));
   }
 }
+    // controllerr.sql.insert(controllerr.id!, {
+                        //   "id": controllerr.asfarListtt[index].id,
+                        //   "chrcnt": controllerr.asfarListtt[index].chrcnt,
+                        //   "kaComp": controllerr.asfarListtt[index].kaComp,
+                        //   "name": controllerr.asfarListtt[index].name,
+                        //   "basl": controllerr.asfarListtt[index].basl,
+                        //   "tp": controllerr.asfarListtt[index].tp
+                        // });
