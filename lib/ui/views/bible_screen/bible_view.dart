@@ -46,24 +46,12 @@ class _BibleViewState extends State<BibleView> {
                 height: screenHieght(50),
               ),
               InkWell(
-                onTap: () {
-                  controller.showCustomBottomSheet(
-                    context,
-                    () {
-                      Get.to(MView(
-                        name: "الترجمة المشتركة دار الكتاب المقدس",
-                        id: "M",
-                        tp: 1,
-                      ));
-                    },
-                    () {
-                      Get.to(MView(
-                        name: "الترجمة المشتركة دار الكتاب المقدس",
-                        id: "M",
-                        tp: 2,
-                      ));
-                    },
-                  );
+                onTap: () async {
+                  await controller.getTran(ch: "M");
+                  Get.to(MView(
+                    name: "الترجمة المشتركة دار الكتاب المقدس",
+                    id: "M",
+                  ));
                 },
                 child: CustomCont(
                   text: controller.bishara.m!,
@@ -73,24 +61,13 @@ class _BibleViewState extends State<BibleView> {
                 height: screenHieght(40),
               ),
               InkWell(
-                onTap: () {
-                  controller.showCustomBottomSheet(
-                    context,
-                    () {
-                      Get.to(MView(
-                        name: "ترجمة فاندايك",
-                        id: "V",
-                        tp: 1,
-                      ));
-                    },
-                    () {
-                      Get.to(MView(
-                        name: "ترجمة فاندايك",
-                        id: "V",
-                        tp: 2,
-                      ));
-                    },
-                  );
+                onTap: () async {
+                  await controller.getTran(ch: "V");
+
+                  Get.to(MView(
+                    name: "ترجمة فاندايك",
+                    id: "V",
+                  ));
                 },
                 child: CustomCont(
                   text: controller.bishara.v!,
@@ -100,192 +77,96 @@ class _BibleViewState extends State<BibleView> {
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "الترجمة الكاثوليكية",
-                          id: "K",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "الترجمة الكاثوليكية",
-                          id: "K",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "K");
+                    Get.to(MView(
+                      name: "الترجمة الكاثوليكية",
+                      id: "K",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.k!)),
               SizedBox(
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "الترجمة البولسية",
-                          id: "P",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "الترجمة البولسية",
-                          id: "P",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "P");
+                    Get.to(MView(
+                      name: "الترجمة البولسية",
+                      id: "P",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.p!)),
               SizedBox(
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "ترجمة كتاب الحياة",
-                          id: "H",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "ترجمة كتاب الحياة",
-                          id: "H",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "H");
+                    Get.to(MView(
+                      name: "ترجمة كتاب الحياة",
+                      id: "H",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.h!)),
               SizedBox(
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "النص السرياني",
-                          id: "SY",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "النص السرياني",
-                          id: "SY",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "SY");
+                    Get.to(MView(
+                      name: "النص السرياني",
+                      id: "SY",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.sY!)),
               SizedBox(
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "النص اليوناني",
-                          id: "GR",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "النص اليوناني",
-                          id: "GR",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "GR");
+                    Get.to(MView(
+                      name: "النص اليوناني",
+                      id: "GR",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.gR!)),
               SizedBox(
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "النص العبري",
-                          id: "HE",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "النص العبري",
-                          id: "HE",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "HE");
+                    Get.to(MView(
+                      name: "النص العبري",
+                      id: "HE",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.hE!)),
               SizedBox(
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "النص الإنكليزي",
-                          id: "EN",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "النص الإنكليزي",
-                          id: "EN",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "EN");
+                    Get.to(MView(
+                      name: "النص الإنكليزي",
+                      id: "EN",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.eN!)),
               SizedBox(
                 height: screenHieght(40),
               ),
               InkWell(
-                  onTap: () {
-                    controller.showCustomBottomSheet(
-                      context,
-                      () {
-                        Get.to(MView(
-                          name: "النص الفرنسي",
-                          id: "FR",
-                          tp: 1,
-                        ));
-                      },
-                      () {
-                        Get.to(MView(
-                          name: "النص الفرنسي",
-                          id: "FR",
-                          tp: 2,
-                        ));
-                      },
-                    );
+                  onTap: () async {
+                    await controller.getTran(ch: "FR");
+                    Get.to(MView(
+                      name: "النص الفرنسي",
+                      id: "FR",
+                    ));
                   },
                   child: CustomCont(text: controller.bishara.fR!)),
             ],

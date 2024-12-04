@@ -20,25 +20,26 @@ class _SplashSceenViewState extends State<SplashSceenView> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            backgroundColor: AppColors.mainBackColor,
             body: Stack(
-      alignment: Alignment.bottomCenter,
-      fit: StackFit.passthrough,
-      children: [
-        Center(
-            child: SvgPicture.asset(
-          'assets/images/albishara2.svg',
-          width: screenWidth(3),
-          height: screenHieght(3),
-        )),
-        Container(
-          margin: EdgeInsets.only(bottom: screenWidth(3)),
-          // width: size.width*0.1,
-          height: screenWidth(3),
-          child: SpinKitThreeBounce(
-            color: Colors.brown,
-          ),
-        ),
-      ],
-    )));
+              alignment: Alignment.bottomCenter,
+              fit: StackFit.passthrough,
+              children: [
+                Center(
+                    child: SvgPicture.asset(
+                  'assets/images/Logo-abdo-1.svg',
+                  width: screenWidth(4),
+                  height: screenHieght(4),
+                )),
+                Container(
+                  margin: EdgeInsets.only(bottom: screenWidth(3)),
+                  // width: size.width*0.1,
+                  height: screenWidth(3),
+                  child: SpinKitThreeBounce(
+                    color: Color.fromARGB(255, 215, 207, 149),
+                  ),
+                ),
+              ],
+            )));
   }
 }

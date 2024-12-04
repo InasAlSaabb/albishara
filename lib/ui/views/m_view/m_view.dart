@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_templete/core/utils/general_utils.dart';
-import 'package:flutter_templete/main.dart';
 import 'package:flutter_templete/ui/shared/colors.dart';
 import 'package:flutter_templete/ui/shared/utils.dart';
 import 'package:flutter_templete/ui/views/chnr_view/chnr_view.dart';
 import 'package:flutter_templete/ui/views/m_view/m_controller.dart';
+import 'package:flutter_templete/ui/views/search_view/search_view.dart';
 import 'package:get/get.dart';
 
 class MView extends StatefulWidget {
@@ -43,11 +42,26 @@ class _MViewState extends State<MView> {
       appBar: AppBar(
         backgroundColor: AppColors.mainOrangeColor,
         leadingWidth: screenWidth(1),
-        leading: Center(
-            child: Text(
-          widget.name!,
-          style: TextStyle(fontSize: screenWidth(16)),
-        )),
+        leading: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.search), // أيقونة البحث
+              onPressed: () {
+                Get.to(ArabicSearchView(
+                  sss: controllerr.asfarListtt!,
+                ));
+                // هنا يمكنك إضافة الكود الذي يقوم بفتح صفحة البحث أو تنفيذ أي إجراء
+                print('بحث تم الضغط عليه');
+              },
+            ),
+            Center(
+              child: Text(
+                widget.name!,
+                style: TextStyle(fontSize: screenWidth(16)),
+              ),
+            ),
+          ],
+        ),
       ),
       backgroundColor: AppColors.mainBackColor,
       body: Padding(
@@ -57,85 +71,101 @@ class _MViewState extends State<MView> {
               ? SpinKitCircle(
                   color: AppColors.mainOrangeColor,
                 )
-              : ListView(shrinkWrap: true, children: [
-                  screenHieght(15).ph,
-                  Text(widget.tp == 1 ? "العهد القديم" : "العهد الجديد",
-                      style: TextStyle(
-                          fontSize: screenWidth(14),
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.mainOrangeColor)),
-                  screenHieght(40).ph,
-                  ListView.builder(
-                      physics: ScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: controllerr.asfarListtt.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        // controllerr.sql.insert("asfar", {
-                        //   "id": controllerr.asfarListtt[index].id,
-                        //   "trans": controllerr.id,
-                        //   "chrcnt": controllerr.asfarListtt[index].chrcnt,
-                        //   "kaComp": controllerr.asfarListtt[index].kaComp,
-                        //   "name": controllerr.asfarListtt[index].name,
-                        //   "basl": controllerr.asfarListtt[index].basl,
-                        //   "tp": controllerr.asfarListtt[index].tp
-                        // });
-                        // final asfar = controllerr.asfarListtt[index];
-
-                        // تحقق من أن id غير null قبل استخدامه
-                        // checkAndInsert(asfar.id!, {
-                        //   "id": controllerr.asfarListtt[index].id,
-                        //   "trans": controllerr.id,
-                        //   "chrcnt": controllerr.asfarListtt[index].chrcnt,
-                        //   "kaComp": controllerr.asfarListtt[index].kaComp,
-                        //   "name": controllerr.asfarListtt[index].name,
-                        //   "basl": controllerr.asfarListtt[index].basl,
-                        //   "tp": controllerr.asfarListtt[index].tp
-                        // });
-                        storage.setNum(controllerr.id!);
-
-                        return Visibility(
-                          visible:
-                              widget.tp == controllerr.asfarListtt[index].tp,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  color: AppColors.mainBackColor,
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          style: BorderStyle.solid,
-                                          width: 2,
-                                          color: Colors.brown))),
-                              child: Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.to(ChnrView(
-                                      trans: widget.id,
-                                      hid: controllerr.asfarListtt[index].id,
-                                      ch: controllerr.asfarListtt[index].chrcnt,
-                                    ));
-                                  },
-                                  child: Text(
-                                    controllerr.asfarListtt[index].name ?? "",
-                                    style: TextStyle(
-                                        fontSize: screenWidth(14),
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.mainOrangeColor),
-                                  ),
-                                ),
-                              )),
-                        );
-                      }),
-                ]);
+              : Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text("العهد القديم",
+                              style: TextStyle(
+                                  fontSize: screenWidth(12),
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.mainOrangeColor)),
+                          Expanded(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: controllerr.asfarListtt.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                if (controllerr.asfarListtt[index].tp != 1) {
+                                  return SizedBox.shrink();
+                                }
+                                return buildListItem(index);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    VerticalDivider(
+                      width: 40,
+                      thickness: 2,
+                      color: Colors.brown,
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text("العهد الجديد",
+                              style: TextStyle(
+                                  fontSize: screenWidth(12),
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.mainOrangeColor)),
+                          Expanded(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: controllerr.asfarListtt.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                if (controllerr.asfarListtt[index].tp != 2) {
+                                  return SizedBox.shrink();
+                                }
+                                return buildListItem(index);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
         }),
       ),
     ));
   }
+
+  Widget buildListItem(int index) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: screenHieght(100)),
+      child: Container(
+        padding: EdgeInsets.only(bottom: screenHieght(60)),
+        decoration: BoxDecoration(
+          color: AppColors.mainBackColor,
+          border: Border(
+            bottom: BorderSide(
+              style: BorderStyle.solid,
+              width: 1,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+        child: Center(
+          child: InkWell(
+            onTap: () {
+              Get.to(ChnrView(
+                name: controllerr.asfarListtt[index].name,
+                trans: widget.id,
+                hid: controllerr.asfarListtt[index].id,
+                ch: controllerr.asfarListtt[index].chrcnt,
+              ));
+            },
+            child: Text(
+              controllerr.asfarListtt[index].name ?? "",
+              style: TextStyle(
+                  fontSize: screenWidth(22),
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.mainOrangeColor),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
-    // controllerr.sql.insert(controllerr.id!, {
-                        //   "id": controllerr.asfarListtt[index].id,
-                        //   "chrcnt": controllerr.asfarListtt[index].chrcnt,
-                        //   "kaComp": controllerr.asfarListtt[index].kaComp,
-                        //   "name": controllerr.asfarListtt[index].name,
-                        //   "basl": controllerr.asfarListtt[index].basl,
-                        //   "tp": controllerr.asfarListtt[index].tp
-                        // });

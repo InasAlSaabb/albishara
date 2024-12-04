@@ -7,10 +7,11 @@ import 'package:flutter_templete/ui/views/chnr_view/chnr_controller.dart';
 import 'package:get/get.dart';
 
 class ChnrView extends StatefulWidget {
-  const ChnrView({super.key, this.ch, this.hid, this.trans});
+  const ChnrView({super.key, this.ch, this.hid, this.trans, this.name});
   final int? ch;
   final int? hid;
   final String? trans;
+  final String? name;
 
   @override
   State<ChnrView> createState() => _ChnrViewState();
@@ -30,6 +31,15 @@ class _ChnrViewState extends State<ChnrView> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: AppColors.mainOrangeColor,
+              leadingWidth: screenWidth(1),
+              leading: Center(
+                  child: Text(
+                widget.name!,
+                style: TextStyle(fontSize: screenWidth(14)),
+              )),
+            ),
             backgroundColor: AppColors.mainBackColor,
             body: ListView(shrinkWrap: true, children: [
               screenHieght(15).ph,

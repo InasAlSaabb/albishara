@@ -1,1 +1,6 @@
-enum OperationType { NONE, ASFAR, AYAYT }
+enum OperationType {
+  NONE,
+  ASFAR,
+  TRANS,
+  AYAYT,
+}

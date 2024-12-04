@@ -1,3 +1,4 @@
+import 'package:flutter_templete/core/data/models/apis/versemodel.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -22,160 +23,49 @@ class SqlDb {
 
   _onUpgrade(Database db, int oldversion, int newversion) async {
     print("upp*******************");
-    // await db.execute("ALTER TABLE notes ADD COLUMN 'name' TEXT");
   }
 
   _onCreate(Database db, int version) async {
     Batch batch = db.batch();
     //exexec one time
     batch.execute('''
-CREATE TABLE "M"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "V"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "K"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "P"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "H"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "SY"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "GR"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "HE"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
-    batch.execute('''
-CREATE TABLE "FR"(
-"id" INTEGER ,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
-
-
-''');
+      CREATE TABLE "trans" (
+        "id" INTEGER PRIMARY KEY,
+        "name" TEXT,
+        "tp" INTEGER,
+        "basl" TEXT,
+        "chrcnt" INTEGER,
+        "trans" TEXT
+      )
+    ''');
 
     batch.execute('''
-CREATE TABLE "asfar"(
-"id" INTEGER ,
-"trans" TEXT,
-"chrcnt" INTEGER ,
-"kaComp" INTEGER,
-"name" TEXT ,
-"basl" TEXT ,
-"tp" INTEGER
-)
+      CREATE TABLE "chapters" (
+        "chnr" INTEGER,
+        "sfrnr" INTEGER,
+        "trans" TEXT,
+        FOREIGN KEY (sfrnr) REFERENCES tran(id)
+      )
+    ''');
 
-
-''');
     batch.execute('''
-CREATE TABLE "ayat"(
-"id" INTEGER ,
-"sfrnr" INTEGER,
-"hid" TEXT ,
-"chnr" INTEGER,
-"vnumber" INTEGER,
-"textch" TEXT,
-"tid" TEXT,
-"trans" TEXT
-
-)
-
-
-''');
+      CREATE TABLE "verses" (
+        "id" INTEGER,
+        "sfrnr" INTEGER,
+        "hid" TEXT,
+        "chnr" INTEGER,
+        "vnumber" INTEGER,
+        "textch" TEXT,
+        "tid" TEXT,
+        "trans" TEXT,
+        FOREIGN KEY (sfrnr) REFERENCES trans(id),
+        FOREIGN KEY (chnr) REFERENCES chapters(chnr)
+      )
+    ''');
     batch.commit();
     print("CREATE ********************");
   }
 
-  // readData(String sql, List<Object> list) async {
-  //   Database? mydb = await db;
-  //   List<Map> response = await mydb!.rawQuery(sql);
-  //   print("read***********");
-  //   return response;
-  // }
   Future<List<Map<String, dynamic>>> readData(
     String sql,
     List<Object> params,
@@ -183,10 +73,8 @@ CREATE TABLE "ayat"(
     // Get the database instance
     Database? mydb = await db;
 
-    // Execute the raw query
     List<Map<String, dynamic>> response = await mydb!.rawQuery(sql, params);
 
-    // Optional: Log the response for debugging
     print("read***********");
 
     return response;
@@ -206,18 +94,6 @@ CREATE TABLE "ayat"(
       whereArgs: [id],
     );
     return result.isNotEmpty;
-  }
-
-  updateData(String sql) async {
-    Database? mydb = await db;
-    int response = await mydb!.rawUpdate(sql);
-    return response;
-  }
-
-  deleteData(String sql) async {
-    Database? mydb = await db;
-    int response = await mydb!.rawDelete(sql);
-    return response;
   }
 
   mydeletDatabase() async {
@@ -265,15 +141,17 @@ CREATE TABLE "ayat"(
     return response;
   }
 
-  update(String table, Map<String, Object?> val, String? mywhere) async {
-    Database? mydb = await db;
-    int response = await mydb!.update(table, val, where: mywhere);
-    return response;
+  Future<List<VerseModel>> searchOldTestament(String searchText) async {
+    final results = await _db!.rawQuery(
+        'SELECT verses.* FROM verses INNER JOIN trans ON verses.sfrnr = trans.id WHERE verses.textch LIKE ? AND trans.tp = 1',
+        ['%$searchText%']);
+    return results.map((map) => VerseModel.fromJson(map)).toList();
   }
 
-  delete(String table, String? mywhere) async {
-    Database? mydb = await db;
-    int response = await mydb!.delete(table, where: mywhere);
-    return response;
+  Future<List<VerseModel>> searchNewTestament(String searchText) async {
+    final results = await _db!.rawQuery(
+        'SELECT verses.* FROM verses INNER JOIN trans ON verses.sfrnr = trans.id WHERE verses.textch LIKE ? AND trans.tp = 2',
+        ['%$searchText%']);
+    return results.map((map) => VerseModel.fromJson(map)).toList();
   }
 }

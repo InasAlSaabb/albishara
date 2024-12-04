@@ -239,16 +239,16 @@ class AyatController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    fetchData();
+    fetchData(ch: ch!);
   }
 
-  Future<void> fetchData() async {
+  Future<void> fetchData({required int ch}) async {
     final connectivityResult = await (Connectivity().checkConnectivity());
 
     if (connectivityResult == ConnectivityResult.none) {
       await getAyatFromDatabase();
     } else {
-      await getAyatList(trans: trans ?? '', hid: hid ?? 1, ch: ch ?? 1);
+      await getAyatList(trans: trans ?? '', hid: hid ?? 1, ch: ch);
     }
   }
 
