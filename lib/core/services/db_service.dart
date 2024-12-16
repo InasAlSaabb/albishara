@@ -40,6 +40,7 @@ class DatabaseService {
     }
 
     await batch.commit();
+    print("CREATE ************************************");
   }
 
   static Future<List<VerseModel>> searchVerses(

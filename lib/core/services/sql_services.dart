@@ -62,6 +62,16 @@ class SqlDb {
         FOREIGN KEY (chnr) REFERENCES chapters(chnr)
       )
     ''');
+    batch.execute('''
+CREATE TABLE "asfar"(
+"id" INTEGER ,
+"name" TEXT ,
+"tp" INTEGER,
+"basl" TEXT ,
+"chrcnt" INTEGER ,
+"kaComp" INTEGER
+)
+        ''');
     batch.commit();
     print("CREATE ********************");
   }

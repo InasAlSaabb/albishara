@@ -81,10 +81,6 @@ class NetworkUtil {
     Map<String, String>? files = const {},
     Map<String, dynamic>? params,
   }) async {
-// assert(
-//       requestType == RequestType.GET || requestType == RequestType.MULTIPART,
-//       'Focus pls');
-
     try {
       var request = http.MultipartRequest(
           requestType.name, Uri.https(baseUrl, url, params));
@@ -124,15 +120,6 @@ class NetworkUtil {
     }
   }
 
-  // static MediaType getContentType(String name) {
-  //   var ext = name.split('.').last;
-  //   if (ext == "png" || ext == "jpeg") {
-  //     return MediaType.parse("image/jpg");
-  //   } else if (ext == 'pdf') {
-  //     return MediaType.parse("application/pdf");
-  //   } else {
-  //     return MediaType.parse("image/jpg");
-  //   }
   static MediaType getContentType(String name) {
     var ext = name.split('.').last;
     if (ext == ("png") || ext == ("jpeg") || ext == ("jpg")) {
@@ -185,17 +172,3 @@ class NetworkUtil {
     }
   }
 }
-
-
-
-
-
-  // void test() async {
-  //   var response = await client.post(Uri.https(baseUrl, 'api/web/user/login'),
-  //       headers: {"Content-Type": "application/json"},
-  //       body: jsonEncode(
-  //           {"userName": "Test@gmail.com", "password": "Test@1234"}));
-
-  //   var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
-  // }
-// }

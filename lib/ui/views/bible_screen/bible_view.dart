@@ -47,11 +47,21 @@ class _BibleViewState extends State<BibleView> {
               ),
               InkWell(
                 onTap: () async {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) =>
+                        const Center(child: CircularProgressIndicator()),
+                  );
+
                   await controller.getTran(ch: "M");
-                  Get.to(MView(
-                    name: "الترجمة المشتركة دار الكتاب المقدس",
-                    id: "M",
-                  ));
+
+                  Navigator.pop(context); // إغلاق مؤشر التحميل
+
+                  Get.to(() => MView(
+                        name: "الترجمة المشتركة دار الكتاب المقدس",
+                        id: "M",
+                      ));
                 },
                 child: CustomCont(
                   text: controller.bishara.m!,

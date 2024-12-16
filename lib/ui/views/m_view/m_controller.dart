@@ -30,12 +30,6 @@ class Mcontroller extends BaseController {
   }
 
   bool isloading = true;
-  // Future<void> readData(String id) async {
-  //   var result = await sql.read(id);
-  //   RxList<asfarListModel> res = RxList<asfarListModel>.from(
-  //       result.map((item) => asfarListModel.fromJson(item)).toList());
-  //   asfarListtt.assignAll(res);
-  // }
 
   Future<void> fetchData() async {
     List<String> ids = await storage.getNum();
@@ -58,7 +52,7 @@ class Mcontroller extends BaseController {
     }
     final result = await sql.readmod(
       'asfar',
-      where: '"trans" = ?',
+      where: '"name" = ?',
       whereArgs: [id!],
     );
     // var result = await sql.read(id!);
@@ -112,12 +106,11 @@ class Mcontroller extends BaseController {
         // إذا لم يكن السجل موجودًا، قم بالإضافة
         await sql.insert("asfar", {
           "id": item.id,
-          "trans": id,
+          "name": item.name,
+          "tp": item.tp,
+          "basl": item.basl,
           "chrcnt": item.chrcnt,
           "kaComp": item.kaComp,
-          "name": item.name,
-          "basl": item.basl,
-          "tp": item.tp,
         });
       }
     }

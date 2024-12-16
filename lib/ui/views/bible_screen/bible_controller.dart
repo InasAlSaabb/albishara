@@ -36,34 +36,41 @@ class BibleController extends BaseController {
           await mydb!.transaction((txn) async {
             for (var sefr in result) {
               // Insert into trans table using transaction
-              await txn.insert('trans', {
-                'id': sefr.id,
-                'name': sefr.name,
-                'tp': sefr.tp,
-                'basl': sefr.basl,
-                'chrcnt': sefr.chrcnt,
-                'trans': ch
-              });
+              await txn.insert(
+                  'trans',
+                  {
+                    'id': sefr.id,
+                    'name': sefr.name,
+                    'tp': sefr.tp,
+                    'basl': sefr.basl,
+                    'chrcnt': sefr.chrcnt,
+                    'trans': ch
+                  },
+                  conflictAlgorithm: ConflictAlgorithm.replace);
 
               if (sefr.chapters != null) {
                 for (var chapter in sefr.chapters!) {
                   // Insert into chapters using transaction
                   await txn.insert('chapters',
-                      {'chnr': chapter.chnr, 'sfrnr': sefr.id, 'trans': ch});
+                      {'chnr': chapter.chnr, 'sfrnr': sefr.id, 'trans': ch},
+                      conflictAlgorithm: ConflictAlgorithm.replace);
 
                   if (chapter.verses != null) {
                     for (var verse in chapter.verses!) {
                       // Insert verses using transaction
-                      await txn.insert('verses', {
-                        'id': verse.id,
-                        'sfrnr': verse.sfrnr,
-                        'hid': verse.hid,
-                        'chnr': verse.chnr,
-                        'vnumber': verse.vnumber,
-                        'textch': verse.textch,
-                        'tid': verse.tid,
-                        'trans': ch
-                      });
+                      await txn.insert(
+                          'verses',
+                          {
+                            'id': verse.id,
+                            'sfrnr': verse.sfrnr,
+                            'hid': verse.hid,
+                            'chnr': verse.chnr,
+                            'vnumber': verse.vnumber,
+                            'textch': verse.textch,
+                            'tid': verse.tid,
+                            'trans': ch
+                          },
+                          conflictAlgorithm: ConflictAlgorithm.replace);
                       print("okkkkkkkk");
                     }
                   }
